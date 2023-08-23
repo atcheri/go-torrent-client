@@ -1,0 +1,1 @@
+### The use-cases will also expose and implements interfaces, and their dependencies will be interfaces from the ports

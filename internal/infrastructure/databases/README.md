@@ -1,0 +1,1 @@
+### This folder will contain all databases and each of them will need to implement driven interfaces, or the right side of the hexagon
