@@ -2,10 +2,25 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
+
+	"github.com/atcheri/go-torrent-client/internal/core/domain/torrentfile"
 )
 
 func main() {
-	fmt.Println("===== BEGIN cli main function =====")
-	fmt.Println("IMPLEMENT a cli that could expose the use cases")
-	fmt.Println("===== END cli main function =====")
+	inPath := os.Args[1]
+	outPath := os.Args[2]
+
+	tf, err := torrentfile.Open(inPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = tf.DownloadToFile(outPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("\nFinished downloading file %s\n", outPath)
 }

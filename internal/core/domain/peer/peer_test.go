@@ -1,4 +1,4 @@
-package domain
+package peer
 
 import (
 	"net"
@@ -45,5 +45,21 @@ func Test_UnmarshalPeers(t *testing.T) {
 		peers, err := UnmarshalPeers([]byte(test.input))
 		assert.Equal(t, test.output.peers, peers)
 		assert.Equal(t, test.output.err, err)
+	}
+}
+
+func TestString(t *testing.T) {
+	tests := []struct {
+		input  Peer
+		output string
+	}{
+		{
+			input:  Peer{IP: net.IP{127, 0, 0, 1}, Port: 8080},
+			output: "127.0.0.1:8080",
+		},
+	}
+	for _, test := range tests {
+		s := test.input.String()
+		assert.Equal(t, test.output, s)
 	}
 }
